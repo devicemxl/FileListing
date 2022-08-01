@@ -13,6 +13,18 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 #
+#Paso 10. cosmeticos
+#
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+
+"""
+
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+#
 #Paso 1. Variables Iniciales
 #
 # función para buscar archivos
@@ -55,8 +67,8 @@ files={} # Archivos pendientes identificados
 originalfiles = BuscaArchivos(dirOriginal)
 for each in originalfiles:
     files[str(each)]=''
-print('-----')
-print (files)
+#print('-----')
+#print (files)
 #
 #Paso 6. Generar lista de files en este directorio (folder)
 #
@@ -64,8 +76,8 @@ dirCompleto='C:/working/xampp/htdocs/Lab/05202002/daniel/20220727/WorkPerformanc
 completedfiles=BuscaArchivos(dirCompleto)
 for completed in completedfiles:
     files[completed] = 'completed'
-print('-----')
-print(files)
+#print('-----')
+#print(files)
 #
 #Paso 7. Tags 
 #
@@ -82,13 +94,13 @@ for tag in types:
     for q in files:
         if ( q in tagfiles ):
             files[q] = tag
-print('-----')
-print(files)
+#print('-----')
+#print(files)
 #
 for Todo in files:
     if ( files[Todo] == '' ):
         files[Todo] = 'ToDo'
-print(files)
+#print(files)
 #
 for z in files.copy():
     if ( files[z] == 'completed' ):
@@ -110,7 +122,7 @@ for i in files:
 #Paso 8. Files filtrados a pandas 
 #
 table = pd.DataFrame.from_dict(FilteredFiles, orient='index', columns=['tags'])
-print('-----')
+#print('-----')
 #
 #Paso 9. Pandas a streamlit 
 #
